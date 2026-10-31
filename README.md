@@ -12,7 +12,7 @@ The objective of this project is to implement, evaluate, and compare multiple st
 * **Target Variable:** Binary column (target) with class values balanced between 0 and 1.
 
 ## c. GitHub Repository Link
-* **Repository URL:** https://github.com
+* **Repository URL:** [https://github.com](https://github.com/saurabhnigam1980-max/BITS-ML-Assignment-2/tree/main)
 
 ## d. Models Used & Evaluation Metrics Comparison Table
 All five classification models were trained on the identical training split (800 rows) and evaluated on the identical unseen validation split (test_data.csv, 200 rows).
