@@ -16,7 +16,7 @@ The primary objective of this project centers on optimizing a predictive classif
 * **Target Variable:** Binary column (target) tracking patient metabolic category (0 = Stable, 1 = Positive Diabetes Risk).
 
 ## c. GitHub Repository Link
-* **Repository URL:** https://github.com
+* **Repository URL:**
 https://github.com/saurabhnigam1980-max/BITS-ML-Assignment-2
 
 ## d. Models Used & Evaluation Metrics Comparison Table
