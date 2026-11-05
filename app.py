@@ -4,8 +4,8 @@ import numpy as np
 import joblib
 import os
 from sklearn.metrics import (
-    accuracy_score, roc_auc_score, precision_score, 
-    recall_score, f1_score, matthews_corrcoef, 
+    accuracy_score, roc_auc_score, precision_score,
+    recall_score, f1_score, matthews_corrcoef,
     confusion_matrix, classification_report
 )
 import matplotlib.pyplot as plt
@@ -13,7 +13,7 @@ import seaborn as sns
 
 st.set_page_config(page_title="BITS ML Evaluator App", layout="wide")
 
-st.title("🔬 Machine Learning Model Evaluation Dashboard")
+st.title("🔬 Chronic Disease & Diabetes Risk Evaluation Dashboard")
 st.subheader("BITS Pilani WILP - M.Tech (AIML) Assignment 2")
 
 st.sidebar.header("📁 Step 1: Upload Test Data")
@@ -33,25 +33,25 @@ if uploaded_file is not None:
         X_test = test_data.drop(columns=['target'])
         y_test = test_data['target']
         st.success("Test dataset uploaded successfully!")
-        
+
         with st.expander("👀 View Test Data Preview"):
             st.dataframe(test_data.head())
             st.write(f"**Shape:** {test_data.shape} rows, {test_data.shape} features")
 
         model_filename = f"model/{model_choice.lower().replace(' ', '_')}.pkl"
-        
+
         if os.path.exists(model_filename):
             model = joblib.load(model_filename)
             y_pred = model.predict(X_test)
             y_proba = model.predict_proba(X_test)[:, 1] if hasattr(model, "predict_proba") else y_pred
-            
+
             acc = accuracy_score(y_test, y_pred)
             auc = roc_auc_score(y_test, y_proba)
             prec = precision_score(y_test, y_pred)
             rec = recall_score(y_test, y_pred)
             f1 = f1_score(y_test, y_pred)
             mcc = matthews_corrcoef(y_test, y_pred)
-            
+
             st.markdown(f"### 📊 Performance Metrics for **{model_choice}**")
             col1, col2, col3, col4, col5, col6 = st.columns(6)
             col1.metric("Accuracy", f"{acc:.4f}")
@@ -60,15 +60,15 @@ if uploaded_file is not None:
             col4.metric("Recall", f"{rec:.4f}")
             col5.metric("F1 Score", f"{f1:.4f}")
             col6.metric("MCC Score", f"{mcc:.4f}")
-            
+
             st.markdown("---")
             left_col, right_col = st.columns(2)
-            
+
             with left_col:
                 st.markdown("#### 📝 Classification Report")
                 report_dict = classification_report(y_test, y_pred, output_dict=True)
                 st.dataframe(pd.DataFrame(report_dict).transpose())
-                
+
             with right_col:
                 st.markdown("#### 🧮 Confusion Matrix")
                 cm = confusion_matrix(y_test, y_pred)
